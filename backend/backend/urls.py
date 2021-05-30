@@ -19,7 +19,7 @@ from rest_framework import routers
 from pepsi import views
 
 router = routers.DefaultRouter()
-router.register(r'businesses', views.PepsiView, 'pepsi')
+router.register(r'businesses', views.BusinessView, 'business')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
