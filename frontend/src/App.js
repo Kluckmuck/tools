@@ -13,14 +13,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* <HomePage /> */}
         <Switch>
           <Route path="/home">
             <HomePage />
           </Route>
-          <Route path="/details">
-            <CompanyDetail />
-          </Route>
+          <Route path="/details/:id" component={CompanyDetail}/>
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>

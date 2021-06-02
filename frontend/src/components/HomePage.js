@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-import {
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class HomePage extends Component {
     constructor(props) {
@@ -36,7 +33,7 @@ class HomePage extends Component {
                 {item.name}
                 <p>{item.description}</p>
                 <p>{item.location}</p>
-                <Link to="/details">Users</Link>
+                <Link to={`details/${item.id}`}>Info</Link>
             </li>
         ));
     };
@@ -71,7 +68,7 @@ class HomePage extends Component {
                                     className="btn btn-primary"
                                 >
                                     Search
-                  </button>
+                                </button>
                             </div>
                             <ul className="list-group list-group-flush border-top-0">
                                 {this.renderItems()}
