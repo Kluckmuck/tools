@@ -1,0 +1,23 @@
+<main className="container">
+  <h1 className="text-white text-uppercase text-center my-4">Var är min pump?</h1>
+  <input type="text" id="search-company" #searchText />
+  <div className="row">
+    <div className="col-md-6 col-sm-10 mx-auto p-0">
+      <div className="card p-3">
+        <div className="mb-4">
+          <button
+            className="btn btn-primary" (click)="search(searchText.value)">
+            Search
+          </button>
+        </div>
+        <ul className="list-group list-group-flush border-top-0">
+          <li *ngFor="let company of companies ">
+                <a routerLink="/detail/{{company.id}}">
+                {{company.name}}
+                </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
