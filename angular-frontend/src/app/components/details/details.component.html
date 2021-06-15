@@ -1,6 +1,21 @@
-<div *ngIf="company">
-  <h2>{{company.name}}</h2>
-  <p>{{company.location}}</p>
-  <p>{{company.description}}</p>
+<div class="container">
+  <div *ngIf="company">
+    <h2>{{company.name}}</h2>
+    <p>{{company.location}}</p>
+    <p>{{company.description}}</p>
+  </div>
+
+  <button mat-button (click)="openDialog()">Open dialog</button>
+
+    <li *ngIf="booking">
+    ID: <i>{{booking.id}}</i>
+    location: <i>{{booking.location}}</i>
+    comment: <i>{{booking.comment}}</i>
+    date: <i>{{booking.date}}</i>
+
+  </li>
+  
+  <div>
+    <button (click)="goBack()">go back</button>
+  </div>
 </div>
-<button (click)="goBack()">go back</button>

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Company } from '../models/Company';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  private URL = 'http://localhost:8000/api/businesses/';  // URL to web api
+  private URL = environment.API + '/api/businesses/';  // URL to web api
   constructor(private http: HttpClient) { }
 
   getCompanies(): Observable<Company[]> {
