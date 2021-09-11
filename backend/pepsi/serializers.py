@@ -5,7 +5,7 @@ from .models import Business, Booking
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ('createdDate', 'comments', 'location', 'date', 'operator', 'status')
+        fields = ('id','createdDate', 'comments', 'location', 'date', 'operator', 'status')
 
 class BusinessSerializer(serializers.ModelSerializer):
     bookings = BookingSerializer(many=True, read_only=True)
