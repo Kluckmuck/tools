@@ -15,7 +15,7 @@ export class BookingService {
 
   createBooking(booking: Booking): Observable<Booking> {
     let data =  {
-      comments: booking.comment,
+      comments: booking.comments,
       location: booking.location,
       date: this.mergeDateAndTime(booking.date, booking.time).toISOString(),
       operator: booking.operator

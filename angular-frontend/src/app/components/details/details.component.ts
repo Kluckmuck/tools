@@ -17,6 +17,7 @@ import { BookingService } from 'src/app/services/booking.service';
 export class DetailsComponent implements OnInit {
   company: Company | undefined;
   booking: Booking | undefined;
+  hideBookings: boolean = false;
 
   constructor(
     private companyService: CompanyService,
@@ -30,9 +31,16 @@ export class DetailsComponent implements OnInit {
     this.getCompany();
   }
 
+  showBookings(): void {
+    this.hideBookings =! this.hideBookings;
+  }
+
   getCompany(): void {
     this.companyService.getCompany(parseInt(this.route.snapshot.paramMap.get('id')))
-      .subscribe(company => this.company = company);
+      .subscribe(company => {
+        this.company = company;
+        console.log(company);
+      });
   }
 
   goBack(): void {
@@ -43,7 +51,7 @@ export class DetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(BookingModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.valid) {
+      if (result != undefined && result.valid) {
         this.booking = result.getRawValue();
         this.booking.operator = this.company.id;
         this.bookingService

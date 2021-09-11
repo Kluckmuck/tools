@@ -5,7 +5,9 @@ export class Booking {
     id: number;
     date: Date = new Date();
     time: Date = new Date();
+    createdDate: Date;
     location: string;
-    comment: string;
+    comments: string;
     operator: number;
+    status: string;
 }
