@@ -5,11 +5,16 @@
   <a routerLink="/start" >
     Homepage
   </a>
-  <a routerLink="/login" >
-    Login
-  </a>
-  <a routerLink="/signup"  >
-    Signup
-  </a>
+  <div *ngIf="isUserLoggedIn; else loggedOut">
+    <p>Logged in!</p>
+  </div>
+  <ng-template #loggedOut>
+    <a routerLink="/login" >
+      Login
+    </a>
+    <a routerLink="/signup"  >
+      Signup
+    </a>
+  </ng-template>
   </mat-toolbar>
 </p>

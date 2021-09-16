@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isUserLoggedIn: boolean;
+  token: string;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.token = this.authService.token;
   }
 
 }

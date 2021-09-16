@@ -84,6 +84,10 @@ export class AuthService {
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+
+  getUsername() {
+    //TODO: return username
+  }
 }
 
 @Injectable()
