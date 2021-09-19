@@ -1,7 +1,5 @@
-#from typing_extensions import get_args
-from django.db.models.query import QuerySet
 from django.shortcuts import render
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .serializers import BusinessSerializer, BookingSerializer
@@ -19,16 +17,28 @@ class BusinessView(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def bookings(self, request, pk=None):
-        #business = self.get_object()
         querySet = Booking.objects.filter(operator=pk)
         serializer = BookingSerializer(querySet)
         return Response(serializer.data)
+
 
 class BookingView(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     queryset = Booking.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['createdDate', 'comments', 'location', 'date', 'operator']
+
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_create(serializer)
+    #     headers = self.get_success_headers(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED,
+    #                     headers=headers)
+
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
+    #     serializer.save()
 
     @action(detail=True, methods=['put', 'patch'])
     def accept(self, request, pk=None):

@@ -1,10 +1,14 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
+
+
 class Business(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField()
     location = models.TextField()
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -18,17 +22,21 @@ class Booking(models.Model):
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
         (DENIED, 'Denied')
-    ] 
+    ]
     createdDate = models.DateTimeField(auto_now_add=True)
     comments = models.CharField(max_length=120)
     location = models.TextField()
     date = models.DateTimeField()
-    operator = models.ForeignKey(Business, on_delete=models.CASCADE, related_name='bookings')
-    status = models.CharField(max_length=2, choices=BOOKING_STATUS_CHOICES,default=PENDING)
+    operator = models.ForeignKey(
+        Business, on_delete=models.CASCADE, related_name='bookings')
+    status = models.CharField(
+        max_length=2, choices=BOOKING_STATUS_CHOICES, default=PENDING)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.comments
-    
+
     def accept_booking(self):
         self.status = self.ACCEPTED
         self.save()
