@@ -13,7 +13,7 @@ export class BookingModalComponent implements OnInit {
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
-    comment: new FormControl('')
+    comments: new FormControl('')
   });
   newBooking: Booking = new Booking();
 

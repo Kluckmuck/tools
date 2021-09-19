@@ -14,20 +14,19 @@ export class BookingService {
   constructor(private http: HttpClient) { }
 
   createBooking(booking: Booking): Observable<Booking> {
-    let data =  {
+    let data = {
       comments: booking.comments,
       location: booking.location,
       date: this.mergeDateAndTime(booking.date, booking.time).toISOString(),
       operator: booking.operator
     };
+    console.log(JSON.stringify(data, null, 2));
     return this.http.post<Booking>(this.URL, data);
   }
 
   private mergeDateAndTime(date: Date, time: Date): Date {
     const d = date.toString();
     const t = time.toString();
-    console.log("date; " + d);
-    console.log("time" + t);
     const t1: any = t.split(' ');
     const t2: any = t1[0].split(':');
     t2[0] = (t1[1] === 'PM' ? (1 * t2[0] + 12) : t2[0]);

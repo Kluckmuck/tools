@@ -7,7 +7,7 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ('id', 'createdDate', 'comments', 'location', 'date',
-                  'operator', 'status')
+                  'operator', 'status', 'owner')
 
 
 class BusinessSerializer(serializers.ModelSerializer):
@@ -15,4 +15,4 @@ class BusinessSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Business
-        fields = ('id', 'name', 'description', 'location', 'bookings')
+        fields = ('id', 'name', 'description', 'location', 'bookings', 'owner')

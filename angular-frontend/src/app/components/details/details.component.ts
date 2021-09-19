@@ -32,14 +32,13 @@ export class DetailsComponent implements OnInit {
   }
 
   showBookings(): void {
-    this.hideBookings =! this.hideBookings;
+    this.hideBookings = !this.hideBookings;
   }
 
   getCompany(): void {
     this.companyService.getCompany(parseInt(this.route.snapshot.paramMap.get('id')))
       .subscribe(company => {
         this.company = company;
-        console.log(company);
       });
   }
 
