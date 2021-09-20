@@ -1,11 +1,17 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .serializers import BusinessSerializer, BookingSerializer
+from .serializers import BusinessSerializer, BookingSerializer, UserSerializer
 from .models import Business, Booking
 
 # Create your views here.
+
+
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 
 class BusinessView(viewsets.ModelViewSet):

@@ -22,6 +22,7 @@ from pepsi import views
 router = routers.DefaultRouter()
 router.register(r'businesses', views.BusinessView, 'business')
 router.register(r'bookings', views.BookingView, 'booking')
+router.register(r'users', views.UserView, 'user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
