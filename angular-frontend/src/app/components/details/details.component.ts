@@ -46,6 +46,13 @@ export class DetailsComponent implements OnInit {
     this.location.back();
   }
 
+  claimCompany(): void {
+    this.companyService.claimCompany(parseInt(this.route.snapshot.paramMap.get('id')))
+      .subscribe(company => {
+        this.company = company;
+      });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(BookingModalComponent);
 

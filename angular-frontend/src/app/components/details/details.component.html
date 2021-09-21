@@ -3,6 +3,8 @@
     <h2>{{company.name}}</h2>
     <p>{{company.location}}</p>
     <p>{{company.description}}</p>
+    <p>Owner: {{company.owner}}</p>
+
 
     <button (click)="showBookings()">Show Bookings</button>
     <div *ngIf="hideBookings">
@@ -28,6 +30,10 @@
   </li>
   
   <div>
-    <button (click)="goBack()">go back</button>
+    <button (click)="claimCompany()">Claim</button>
+  </div>
+
+  <div>
+    <button (click)="goBack()">Go back</button>
   </div>
 </div>

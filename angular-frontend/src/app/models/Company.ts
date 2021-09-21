@@ -6,4 +6,5 @@ export class Company {
     location: string;
     description: string;
     bookings: Booking[];
+    owner: string;
 }

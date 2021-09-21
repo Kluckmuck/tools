@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class CompanyService {
 
-  private URL = environment.API + '/api/businesses/';  // URL to web api
+  private URL = environment.API + '/api/company/';  // URL to web api
   constructor(private http: HttpClient) { }
 
   getCompanies(): Observable<Company[]> {
@@ -21,8 +21,18 @@ export class CompanyService {
     return this.http.get<Company>(url);
   }
 
+  setCompanyOwner(id: Number): Observable<Company> {
+    const url = `${this.URL}${id}/claim/`;
+    return this.http.get<Company>(url);
+  }
+
   searchCompanies(text: String): Observable<Company[]> {
     const url = `${this.URL}?search=${text}`;
     return this.http.get<Company[]>(url);
+  }
+
+  claimCompany(id: Number): Observable<Company> {
+    const url = `${this.URL}${id}/claim/`;
+    return this.http.get<Company>(url);
   }
 }
