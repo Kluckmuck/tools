@@ -1,0 +1,20 @@
+<p>
+  <mat-toolbar>
+    <span>Var är pumpet?</span>
+  <span class="example-spacer"></span>
+  <a routerLink="/start" >
+    Homepage
+  </a>
+  <div *ngIf="isUserLoggedIn; else loggedOut">
+    <p>Logged in!</p>
+  </div>
+  <ng-template #loggedOut>
+    <a routerLink="/login" >
+      Login
+    </a>
+    <a routerLink="/signup"  >
+      Signup
+    </a>
+  </ng-template>
+  </mat-toolbar>
+</p>
