@@ -6,7 +6,7 @@
     Homepage
   </a>
   <div *ngIf="isUserLoggedIn; else loggedOut">
-    <p>Logged in!</p>
+    <a routerLink="/profile">Profile</a>
   </div>
   <ng-template #loggedOut>
     <a routerLink="/login" >

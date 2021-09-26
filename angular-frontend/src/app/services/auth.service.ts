@@ -8,6 +8,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/User';
 
 //import { environment } from '../environments/environment';
 
@@ -83,10 +84,6 @@ export class AuthService {
 
   isLoggedOut() {
     return !this.isLoggedIn();
-  }
-
-  getUsername() {
-    //TODO: return username
   }
 }
 

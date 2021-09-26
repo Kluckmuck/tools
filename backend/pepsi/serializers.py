@@ -30,6 +30,9 @@ class CompanySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    bookings = BookingSerializer(many=True, read_only=True)
+    companies = CompanySerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ("url", "id", "username", "email")
+        fields = ("url", "id", "username", "email", "bookings", "companies")

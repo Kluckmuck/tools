@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailsComponent } from './components/details/details.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { AuthGuard } from './services/auth.service';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: DetailsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserLoginComponent },
   { path: 'signup', component: UserSignupComponent },
+  { path: 'profile', component: UserProfileComponent }
 ];
 
 @NgModule({

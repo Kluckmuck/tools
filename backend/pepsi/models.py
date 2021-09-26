@@ -9,7 +9,11 @@ class Company(models.Model):
     description = models.TextField()
     location = models.TextField()
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="companies",
+    )
 
     def claim(self, user: settings.AUTH_USER_MODEL):
         self.owner = user
@@ -20,24 +24,30 @@ class Company(models.Model):
 
 
 class Booking(models.Model):
-    PENDING = 'PN'
-    ACCEPTED = 'AC'
-    DENIED = 'DN'
+    PENDING = "PN"
+    ACCEPTED = "AC"
+    DENIED = "DN"
     BOOKING_STATUS_CHOICES = [
-        (PENDING, 'Pending'),
-        (ACCEPTED, 'Accepted'),
-        (DENIED, 'Denied')
+        (PENDING, "Pending"),
+        (ACCEPTED, "Accepted"),
+        (DENIED, "Denied"),
     ]
     createdDate = models.DateTimeField(auto_now_add=True)
     comments = models.CharField(max_length=120)
     location = models.TextField()
     date = models.DateTimeField()
     operator = models.ForeignKey(
-        Company, on_delete=models.CASCADE, related_name='bookings')
+        Company, on_delete=models.CASCADE, related_name="bookings"
+    )
     status = models.CharField(
-        max_length=2, choices=BOOKING_STATUS_CHOICES, default=PENDING)
+        max_length=2, choices=BOOKING_STATUS_CHOICES, default=PENDING
+    )
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="bookings",
+    )
 
     def __str__(self):
         return self.comments
