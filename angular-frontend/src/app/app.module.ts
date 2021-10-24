@@ -1,22 +1,32 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HomepageComponent } from './components/homepage/homepage.component';
-import { DetailsComponent } from './components/details/details.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule, MatInputModule, MatNativeDateModule, MatToolbarModule } from '@angular/material';
-import { BookingModalComponent } from './components/booking-modal/booking-modal.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { UserLoginComponent } from './components/user-login/user-login.component';
-import { UserSignupComponent } from './components/user-signup/user-signup.component';
-import { AuthGuard, AuthInterceptor, AuthService } from './services/auth.service';
-import { HeaderComponent } from './components/header/header.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HomepageComponent } from "./components/homepage/homepage.component";
+import { DetailsComponent } from "./components/details/details.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import {
+  MatDialogModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatToolbarModule,
+} from "@angular/material";
+import { BookingModalComponent } from "./components/booking-modal/booking-modal.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { UserLoginComponent } from "./components/user-login/user-login.component";
+import { UserSignupComponent } from "./components/user-signup/user-signup.component";
+import {
+  AuthGuard,
+  AuthInterceptor,
+  AuthService,
+} from "./services/auth.service";
+import { HeaderComponent } from "./components/header/header.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { UserDetailComponent } from "./components/user-profile/user-detail/user-detail.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +37,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     UserLoginComponent,
     UserSignupComponent,
     HeaderComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +51,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     MatInputModule,
     MatDialogModule,
     MatToolbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  entryComponents: [
-    BookingModalComponent
-  ],
+  entryComponents: [BookingModalComponent],
   providers: [
     AuthService,
     AuthGuard,
@@ -54,6 +63,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

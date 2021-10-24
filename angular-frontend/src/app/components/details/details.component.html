@@ -1,34 +1,30 @@
 <div class="container">
   <div *ngIf="company">
-    <h2>{{company.name}}</h2>
-    <p>{{company.location}}</p>
-    <p>{{company.description}}</p>
-    <p>Owner: {{company.owner}}</p>
-
+    <h2>{{ company.name }}</h2>
+    <p>Location: {{ company.location }}</p>
+    <p>Description: {{ company.description }}</p>
+    <p>Owner: {{ company.owner }}</p>
 
     <button (click)="showBookings()">Show Bookings</button>
     <div *ngIf="hideBookings">
       <div *ngFor="let item of company.bookings">
-      <p>Date: {{item.date}}</p>
-      <p>Created: {{item.createdDate}}</p>
-      <p>Location: {{item.location}}</p>
-      <p>Comments: {{item.comments}}</p>
-      <p>Status: {{item.status}}</p>
-      <p>Owner: {{item.owner}}</p>
-    </div>
+        <p>Date: {{ item.date }}</p>
+        <p>Created: {{ item.createdDate }}</p>
+        <p>Location: {{ item.location }}</p>
+        <p>Comments: {{ item.comments }}</p>
+        <p>Status: {{ item.status }}</p>
+        <p>Owner: {{ item.owner }}</p>
+      </div>
     </div>
   </div>
 
   <button mat-button (click)="openDialog()">Book Company</button>
 
-    <li *ngIf="booking">
-    ID: <i>{{booking.id}}</i>
-    location: <i>{{booking.location}}</i>
-    comment: <i>{{booking.comments}}</i>
-    date: <i>{{booking.date}}</i>
-
+  <li *ngIf="booking">
+    ID: <i>{{ booking.id }}</i> location: <i>{{ booking.location }}</i> comment:
+    <i>{{ booking.comments }}</i> date: <i>{{ booking.date }}</i>
   </li>
-  
+
   <div>
     <button (click)="claimCompany()">Claim</button>
   </div>

@@ -1,4 +1,12 @@
 <div *ngIf="user">
-  <p>Username: {{user.username}}</p>
-  <p>Email: {{user.email}}</p>
+  <!-- TODO: Make this into profile -->
+  <p>User: {{ user.username }}</p>
+  <p>Email: {{ user.email }}</p>
+</div>
+
+<hr />
+
+<div *ngIf="company">
+  <!-- TODO:_Rename user-detail to company profile -->
+  <app-user-detail [companyId]="company.id"></app-user-detail>
 </div>
