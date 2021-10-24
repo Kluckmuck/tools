@@ -10,3 +10,18 @@
   <!-- TODO:_Rename user-detail to company profile -->
   <app-user-detail [companyId]="company.id"></app-user-detail>
 </div>
+
+<hr />
+
+<div *ngIf="user">
+  <div *ngFor="let booking of user.bookings">
+    <div style="margin-bottom: 3rem">
+      <p>Date: {{ booking.date }}</p>
+      <p>Created: {{ booking.createdDate }}</p>
+      <p>Location: {{ booking.location }}</p>
+      <p>Comments: {{ booking.comments }}</p>
+      <p>Status: {{ booking.status }}</p>
+      <p>Owner: {{ booking.owner }}</p>
+    </div>
+  </div>
+</div>

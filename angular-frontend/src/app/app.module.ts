@@ -27,6 +27,7 @@ import {
 import { HeaderComponent } from "./components/header/header.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { UserDetailComponent } from "./components/user-profile/user-detail/user-detail.component";
+import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { UserDetailComponent } from "./components/user-profile/user-detail/user-
     HeaderComponent,
     UserProfileComponent,
     UserDetailComponent,
+    UserBookingsComponent,
   ],
   imports: [
     BrowserModule,

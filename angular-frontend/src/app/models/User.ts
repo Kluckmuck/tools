@@ -1,3 +1,4 @@
+import { Booking } from "./Booking";
 import { Company } from "./Company";
 
 export class User {
@@ -6,4 +7,5 @@ export class User {
   username: string;
   email: string;
   companies?: Company[];
+  bookings?: Booking;
 }

@@ -7,13 +7,13 @@
 
     <button (click)="showBookings()">Show Bookings</button>
     <div *ngIf="hideBookings">
-      <div *ngFor="let item of company.bookings">
-        <p>Date: {{ item.date }}</p>
-        <p>Created: {{ item.createdDate }}</p>
-        <p>Location: {{ item.location }}</p>
-        <p>Comments: {{ item.comments }}</p>
-        <p>Status: {{ item.status }}</p>
-        <p>Owner: {{ item.owner }}</p>
+      <div *ngFor="let booking of company.bookings">
+        <p>Date: {{ booking.date }}</p>
+        <p>Created: {{ booking.createdDate }}</p>
+        <p>Location: {{ booking.location }}</p>
+        <p>Comments: {{ booking.comments }}</p>
+        <p>Status: {{ booking.status }}</p>
+        <p>Owner: {{ booking.owner }}</p>
       </div>
     </div>
   </div>
