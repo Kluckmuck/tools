@@ -8,12 +8,7 @@
     <button (click)="showBookings()">Show Bookings</button>
     <div *ngIf="hideBookings">
       <div *ngFor="let booking of company.bookings">
-        <p>Date: {{ booking.date }}</p>
-        <p>Created: {{ booking.createdDate }}</p>
-        <p>Location: {{ booking.location }}</p>
-        <p>Comments: {{ booking.comments }}</p>
-        <p>Status: {{ booking.status }}</p>
-        <p>Owner: {{ booking.owner }}</p>
+        <app-booking-card [booking]="booking"></app-booking-card>
       </div>
     </div>
   </div>

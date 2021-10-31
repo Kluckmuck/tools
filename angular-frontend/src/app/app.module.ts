@@ -28,6 +28,8 @@ import { HeaderComponent } from "./components/header/header.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { UserDetailComponent } from "./components/user-profile/user-detail/user-detail.component";
 import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
+import { BookingDetailsComponent } from './components/booking-details/booking-details.component';
+import { BookingCardComponent } from './components/booking-card/booking-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { UserBookingsComponent } from './components/user-profile/user-bookings/u
     UserProfileComponent,
     UserDetailComponent,
     UserBookingsComponent,
+    BookingDetailsComponent,
+    BookingCardComponent,
   ],
   imports: [
     BrowserModule,

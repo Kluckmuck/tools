@@ -16,13 +16,6 @@
 <div *ngIf="user">
   <h1>Your Bookings:</h1>
   <div *ngFor="let booking of user.bookings">
-    <div style="margin-bottom: 3rem">
-      <p>Date: {{ booking.date }}</p>
-      <p>Created: {{ booking.createdDate }}</p>
-      <p>Location: {{ booking.location }}</p>
-      <p>Comments: {{ booking.comments }}</p>
-      <p>Status: {{ booking.status }}</p>
-      <p>Owner: {{ booking.owner }}</p>
-    </div>
+    <app-booking-card [booking]="booking"></app-booking-card>
   </div>
 </div>
