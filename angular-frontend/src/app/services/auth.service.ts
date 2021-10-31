@@ -5,6 +5,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
+  HttpErrorResponse,
 } from "@angular/common/http";
 import { CanActivate, Router } from "@angular/router";
 
@@ -15,6 +16,7 @@ import jwtDecode from "jwt-decode";
 import * as moment from "moment";
 import { environment } from "src/environments/environment";
 import { User } from "../models/User";
+import { throwToolbarMixedModesError } from "@angular/material";
 
 //import { environment } from '../environments/environment';
 
@@ -39,6 +41,8 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    // Calling logout before login fixes expired jwt-token
+    this.logout();
     return this.http
       .post(this.URL.concat("login/"), { username, password })
       .pipe(
@@ -72,12 +76,14 @@ export class AuthService {
   }
 
   refreshToken() {
+    console.log("refresh token");
     if (
       moment().isBetween(
         this.getExpiration().subtract(1, "days"),
         this.getExpiration()
       )
     ) {
+      console.log("calling post in refresh");
       return this.http
         .post(this.URL.concat("refresh-token/"), { token: this.token })
         .pipe(

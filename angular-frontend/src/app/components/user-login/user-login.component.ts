@@ -35,7 +35,10 @@ export class UserLoginComponent implements OnInit {
       .login(this.f.username.value, this.f.password.value)
       .subscribe(
         (success) => this.router.navigate(["start"]),
-        (error) => (this.error = error)
+        (error) => {
+          this.error = error;
+          console.log(error.error);
+        }
       );
   }
 }
