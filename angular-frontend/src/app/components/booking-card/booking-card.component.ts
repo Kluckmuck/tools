@@ -15,7 +15,9 @@ export class BookingCardComponent implements OnInit {
 
   handleClick() {
     this.booking.id
-      ? this.router.navigate(["booking/", this.booking.id])
+      ? this.router.navigate(["booking/", this.booking.id], {
+          state: { booking: this.booking },
+        })
       : console.log("could not find id");
   }
 }

@@ -23,6 +23,11 @@ export class BookingService {
     return this.http.post<Booking>(this.URL, data);
   }
 
+  getBooking(id: Number): Observable<Booking> {
+    const url = `${this.URL}${id}/`;
+    return this.http.get<Booking>(url);
+  }
+
   private mergeDateAndTime(date: Date, time: Date): Date {
     const d = date.toString();
     const t = time.toString();
