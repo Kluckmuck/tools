@@ -23,6 +23,8 @@ router = routers.DefaultRouter()
 router.register(r"company", views.CompanyView, "company")
 router.register(r"bookings", views.BookingView, "booking")
 router.register(r"users", views.UserView, "user")
+router.register(r"messages", views.MessageView, "message")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

@@ -59,3 +59,19 @@ class Booking(models.Model):
     def deny_booking(self):
         self.status = self.DENIED
         self.save()
+
+
+class Message(models.Model):
+    booking = models.ForeignKey(
+        Booking, on_delete=models.CASCADE, related_name="messages"
+    )
+    name = models.CharField(max_length=80)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return "Message {} by {}".format(self.body, self.name)

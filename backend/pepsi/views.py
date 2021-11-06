@@ -2,8 +2,13 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .serializers import CompanySerializer, BookingSerializer, UserSerializer
-from .models import Company, Booking
+from .serializers import (
+    CompanySerializer,
+    BookingSerializer,
+    MessageSerializer,
+    UserSerializer,
+)
+from .models import Company, Booking, Message
 
 # Create your views here.
 
@@ -70,3 +75,8 @@ class BookingView(viewsets.ModelViewSet):
         booking = self.get_object()
         booking.deny_booking()
         return Response({"status": booking.status})
+
+
+class MessageView(viewsets.ModelViewSet):
+    serializer_class = MessageSerializer
+    queryset = Message.objects.all()

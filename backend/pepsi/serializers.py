@@ -1,10 +1,17 @@
 from rest_framework import serializers
-from .models import Company, Booking
+from .models import Company, Booking, Message
 from django.contrib.auth.models import User
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ("booking", "name", "body", "created_on")
 
 
 class BookingSerializer(serializers.ModelSerializer):
     owner = serializers.CharField(source="owner.username", read_only=True)
+    messages = MessageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Booking
@@ -17,6 +24,7 @@ class BookingSerializer(serializers.ModelSerializer):
             "operator",
             "status",
             "owner",
+            "messages",
         )
 
 
