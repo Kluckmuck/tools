@@ -76,14 +76,12 @@ export class AuthService {
   }
 
   refreshToken() {
-    console.log("refresh token");
     if (
       moment().isBetween(
         this.getExpiration().subtract(1, "days"),
         this.getExpiration()
       )
     ) {
-      console.log("calling post in refresh");
       return this.http
         .post(this.URL.concat("refresh-token/"), { token: this.token })
         .pipe(
@@ -102,7 +100,6 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    console.log("is logged in", true);
     return moment().isBefore(this.getExpiration());
   }
 

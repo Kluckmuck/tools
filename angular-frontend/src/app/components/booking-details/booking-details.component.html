@@ -1,11 +1,18 @@
 <div *ngIf="booking">
-  <div style="margin-bottom: 3rem">
+  <div style="padding-bottom: 5rem">
     <p>Date: {{ booking.date }}</p>
     <p>Created: {{ booking.createdDate }}</p>
     <p>Location: {{ booking.location }}</p>
     <p>Comments: {{ booking.comments }}</p>
     <p>Status: {{ booking.status }}</p>
     <p>Owner: {{ booking.owner }}</p>
+    <div *ngIf="booking.messages">
+      <div *ngFor="let message of booking.messages">
+        <p>Name: {{ message.name }}</p>
+        <p>Body: {{ message.body }}</p>
+        <p>Date: {{ message.created_on }}</p>
+      </div>
+    </div>
   </div>
 </div>
 <div *ngIf="!booking">
