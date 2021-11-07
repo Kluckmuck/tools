@@ -21,7 +21,6 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
       this.company = user.companies[0];
-      console.log(this.user);
     });
   }
 }

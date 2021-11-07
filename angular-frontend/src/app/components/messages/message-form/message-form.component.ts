@@ -7,7 +7,9 @@ import {
 } from "@angular/forms";
 import { Booking } from "../../../models/Booking";
 import { Message } from "../../../models/Message";
+import { User } from "../../../models/User";
 import { MessageService } from "../../../services/message.service";
+import { UserService } from "../../../services/user.service";
 
 @Component({
   selector: "app-message-form",
@@ -16,16 +18,21 @@ import { MessageService } from "../../../services/message.service";
 })
 export class MessageFormComponent implements OnInit {
   @Input() booking: Booking;
+  user: User;
 
   messageForm = new FormGroup({
     body: new FormControl("", Validators.required),
   });
   newMessage: Message = new Message();
 
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.getMessages();
+    this.getUser();
   }
 
   getMessages() {
@@ -48,10 +55,16 @@ export class MessageFormComponent implements OnInit {
     this.messageForm.reset();
   }
 
+  getUser() {
+    this.userService.getUser().subscribe((user) => {
+      this.user = user;
+    });
+  }
+
   toMessage(form: FormGroup): Message {
     const data = {
       booking: this.booking.id,
-      name: "viktor",
+      name: this.user.username,
       body: form.value.body,
       created_on: new Date(),
     } as Message;
