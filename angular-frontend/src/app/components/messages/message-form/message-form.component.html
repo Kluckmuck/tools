@@ -1,0 +1,19 @@
+<div style="padding: 1rem">
+  <h2>Send a message:</h2>
+  <form
+    [formGroup]="messageForm"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <input matInput formControlName="body" />
+      </mat-form-field>
+    </p>
+    <button mat-button type="submit" [disabled]="!messageForm.valid">
+      Book
+    </button>
+  </form>
+  <div></div>
+</div>

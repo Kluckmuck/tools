@@ -3,7 +3,7 @@ export class Message {
     Object.assign(this, init);
   }
   booking: number;
-  created_on: Date;
+  created_on?: Date;
   body: string;
   name: string;
 }

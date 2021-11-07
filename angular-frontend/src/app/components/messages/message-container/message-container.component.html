@@ -1,0 +1,18 @@
+<h2>Messages:</h2>
+<div *ngIf="booking">
+  <div *ngIf="booking.messages">
+    <p>Messages:</p>
+    <div
+      *ngFor="let message of booking.messages"
+      style="border-style: solid; margin: 1rem"
+    >
+      <p>Name: {{ message.name }}</p>
+      <p>Body: {{ message.body }}</p>
+      <p>Date: {{ message.created_on }}</p>
+    </div>
+  </div>
+  <div *ngIf="!booking.messages">
+    <p>No messages</p>
+  </div>
+</div>
+<app-message-form [booking]="booking"></app-message-form>

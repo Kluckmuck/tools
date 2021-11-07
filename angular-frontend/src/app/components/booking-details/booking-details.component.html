@@ -6,13 +6,8 @@
     <p>Comments: {{ booking.comments }}</p>
     <p>Status: {{ booking.status }}</p>
     <p>Owner: {{ booking.owner }}</p>
-    <div *ngIf="booking.messages">
-      <div *ngFor="let message of booking.messages">
-        <p>Name: {{ message.name }}</p>
-        <p>Body: {{ message.body }}</p>
-        <p>Date: {{ message.created_on }}</p>
-      </div>
-    </div>
+
+    <app-message-container [booking]="booking"></app-message-container>
   </div>
 </div>
 <div *ngIf="!booking">

@@ -11,7 +11,7 @@ export class MessageService {
   private URL = environment.API + "/api/messages/"; // URL to web api
   constructor(private http: HttpClient) {}
 
-  createMessage(message: Message): Observable<Message> {
+  sendMessage(message: Message): Observable<Message> {
     return this.http.post<Message>(this.URL, message);
   }
 }

@@ -27,9 +27,11 @@ import {
 import { HeaderComponent } from "./components/header/header.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { UserDetailComponent } from "./components/user-profile/user-detail/user-detail.component";
-import { UserBookingsComponent } from './components/user-profile/user-bookings/user-bookings.component';
-import { BookingDetailsComponent } from './components/booking-details/booking-details.component';
-import { BookingCardComponent } from './components/booking-card/booking-card.component';
+import { UserBookingsComponent } from "./components/user-profile/user-bookings/user-bookings.component";
+import { BookingDetailsComponent } from "./components/booking-details/booking-details.component";
+import { BookingCardComponent } from "./components/booking-card/booking-card.component";
+import { MessageFormComponent } from "./components/messages/message-form/message-form.component";
+import { MessageContainerComponent } from "./components/messages/message-container/message-container.component";
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { BookingCardComponent } from './components/booking-card/booking-card.com
     UserBookingsComponent,
     BookingDetailsComponent,
     BookingCardComponent,
+    MessageContainerComponent,
+    MessageFormComponent,
   ],
   imports: [
     BrowserModule,
