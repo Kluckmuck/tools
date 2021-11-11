@@ -1,7 +1,7 @@
 <div *ngIf="booking" (click)="handleClick()">
   <div style="margin-bottom: 3rem">
-    <p>Date: {{ booking.date }}</p>
-    <p>Created: {{ booking.createdDate }}</p>
+    <p>Date: {{ booking.date | date: "short" }}</p>
+    <p>Created: {{ booking.createdDate | date: "short" }}</p>
     <p>Location: {{ booking.location }}</p>
     <p>Comments: {{ booking.comments }}</p>
     <p>Status: {{ booking.status }}</p>

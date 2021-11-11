@@ -17,7 +17,8 @@
 
   <li *ngIf="booking">
     ID: <i>{{ booking.id }}</i> location: <i>{{ booking.location }}</i> comment:
-    <i>{{ booking.comments }}</i> date: <i>{{ booking.date }}</i>
+    <i>{{ booking.comments }}</i> date:
+    <i>{{ booking.date | date: "short" }}</i>
   </li>
 
   <div>

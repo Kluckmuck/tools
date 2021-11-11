@@ -8,7 +8,7 @@
     >
       <p>Name: {{ message.name }}</p>
       <p>Body: {{ message.body }}</p>
-      <p>Date: {{ message.created_on }}</p>
+      <p>Date: {{ message.created_on | date: "short" }}</p>
     </div>
   </div>
   <div *ngIf="!booking.messages">
