@@ -4,3 +4,4 @@ djangorestframework_jwt==1.11.0
 django-cors-headers==3.8.0
 django-allauth==0.45.0
 django-rest-auth==0.9.5
+django-nose==1.4.7
