@@ -1,6 +1,6 @@
 # How to run
 
-It is advised to create a virtual environment before install packages ([eg. venv](https://docs.python.org/3/library/venv.html)).
+It is advised to create a virtual environment before installing packages ([eg. venv](https://docs.python.org/3/library/venv.html)).
 
 Install packages:
 `pip install -r requirements.txt`
