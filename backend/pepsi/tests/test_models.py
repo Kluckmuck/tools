@@ -1,8 +1,8 @@
 from django.test import TestCase
 
-from pepsi.models import Company
+from pepsi.models import Booking, Company, Message
 from django.contrib.auth.models import User
-
+from datetime import date
 
 # Create your tests here.
 
@@ -42,3 +42,50 @@ class CompanyTestCase(TestCase):
 
         company.claim(self.user2)
         self.assertEqual(company.owner, self.user2)
+
+
+class BookingTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            "Jim Carrey", "jim@carrey.com", "jimspassword"
+        )
+
+        self.company = Company.objects.create(
+            name="ABBA",
+            description="Fishball creators",
+            location="Gothenburg",
+            owner=self.user,
+        )
+
+        Booking.objects.create(
+            comments="A test booking",
+            location="Testville",
+            date=date.fromisoformat("2022-01-22"),
+            operator=self.company,
+            owner=self.user,
+        )
+
+    def test_initial_booking_status(self):
+        booking = Booking.objects.get(location="Testville")
+        self.assertEqual(booking.status, "PN")
+
+    def test_accept_booking_status(self):
+        booking = Booking.objects.get(location="Testville")
+        booking.accept_booking()
+        self.assertEqual(booking.status, "AC")
+
+    def test_deny_booking_status(self):
+        booking = Booking.objects.get(location="Testville")
+        booking.deny_booking()
+        self.assertEqual(booking.status, "DN")
+
+
+class MessageTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            "Jim Carrey", "jim@carrey.com", "jimspassword"
+        )
+
+    def test_create_message(self):
+        # TODO: Continue here
+        Message.objects.create_()
