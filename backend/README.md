@@ -18,3 +18,9 @@ To start the development server, run `python3 manage.py runserver` and open `htt
 
 The admin panel can be reached at `http://localhost:8000/admin`.
 Run `python3 manage.py createsuperuser` to create an admin account.
+
+# Tests
+
+To run all tests: `python3 manage.py test`
+To see coverage report: `coverage report`
+To generate coverage report in HTML: `coverage html`
