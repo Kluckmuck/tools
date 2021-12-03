@@ -74,4 +74,4 @@ class Message(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return "Message {} by {}".format(self.body, self.name)
+        return "'{}' sent by {}".format(self.body, self.name)

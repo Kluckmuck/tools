@@ -86,6 +86,49 @@ class MessageTestCase(TestCase):
             "Jim Carrey", "jim@carrey.com", "jimspassword"
         )
 
+        self.company = Company.objects.create(
+            name="ABBA",
+            description="Fishball creators",
+            location="Gothenburg",
+            owner=self.user,
+        )
+
+        self.booking = Booking.objects.create(
+            comments="A test booking",
+            location="Testville",
+            date=date.fromisoformat("2022-01-22"),
+            operator=self.company,
+            owner=self.user,
+        )
+        self.message = Message.objects.create(
+            booking=self.booking,
+            name="Viktor",
+            body="This is a message sent to someone",
+        )
+
     def test_create_message(self):
-        # TODO: Continue here
-        Message.objects.create_()
+        message = Message.objects.get(name="Viktor")
+
+        self.assertEqual(message.body, "This is a message sent to someone")
+        self.assertEqual(message.booking, self.booking)
+
+    def test_str(self):
+        message = Message.objects.get(name="Viktor")
+        self.assertEqual(
+            str(message), "'This is a message sent to someone' sent by Viktor"
+        )
+
+    def test_order(self):
+        Message.objects.create(
+            booking=self.booking,
+            name="Jonathan",
+            body="Hallå hur är det läget?",
+        )
+        Message.objects.create(
+            booking=self.booking,
+            name="En grabb",
+            body="Inte så bra tack som frågar.",
+        )
+
+        booking = Booking.objects.get(location="Testville")
+        self.assertEqual(booking, "hej")
