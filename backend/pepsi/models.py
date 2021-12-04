@@ -19,6 +19,9 @@ class Company(models.Model):
         self.owner = user
         self.save()
 
+    def can_manage_company(self, user):
+        return user == self.owner
+
     def __str__(self):
         return self.name
 

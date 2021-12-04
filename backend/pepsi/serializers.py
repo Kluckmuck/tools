@@ -30,11 +30,18 @@ class BookingSerializer(serializers.ModelSerializer):
 
 class CompanySerializer(serializers.ModelSerializer):
     bookings = BookingSerializer(many=True, read_only=True)
-    owner = serializers.CharField(source="owner.username", read_only=True)
+    # owner = serializers.CharField(source="owner", read_only=True)
+    # TODO: Send whole user object in owner field
 
     class Meta:
         model = Company
-        fields = ("id", "name", "description", "location", "bookings", "owner")
+        fields = ("id", "owner", "name", "description", "location", "bookings")
+
+
+class SlimCompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ("id", "owner", "name", "description", "location")
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

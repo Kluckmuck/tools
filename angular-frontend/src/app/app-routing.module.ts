@@ -14,7 +14,11 @@ const routes: Routes = [
   { path: "detail/:id", component: DetailsComponent, canActivate: [AuthGuard] },
   { path: "login", component: UserLoginComponent },
   { path: "signup", component: UserSignupComponent },
-  { path: "profile", component: UserProfileComponent },
+  {
+    path: "profile",
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "booking/:id", component: BookingDetailsComponent },
 ];
 

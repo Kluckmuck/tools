@@ -22,16 +22,19 @@ class CompanyTestCase(TestCase):
 
     def test_create_company(self):
         company = Company.objects.get(name="ABBA")
+
         self.assertEqual(company.description, "Fishball creators")
         self.assertEqual(company.location, "Gothenburg")
 
     def test_str(self):
         company = Company.objects.get(name="ABBA")
+
         self.assertEqual(str(company), "ABBA")
 
     def test_first_name_max_length(self):
         company = Company.objects.get(name="ABBA")
         max_length = company._meta.get_field("name").max_length
+
         self.assertEqual(max_length, 120)
 
     def test_claim(self):
@@ -39,9 +42,20 @@ class CompanyTestCase(TestCase):
         self.user2 = User.objects.create_user(
             "Arnold", "arnold@carrey.com", "arnoldspassword"
         )
-
         company.claim(self.user2)
+
         self.assertEqual(company.owner, self.user2)
+
+    def test_can_manage_valid(self):
+        company: Company = Company.objects.get(name="ABBA")
+
+        self.assertEqual(company.can_manage_company(self.user), True)
+
+    def test_can_manage_invalid(self):
+        company: Company = Company.objects.get(name="ABBA")
+        nonValidUser = User.objects.create_user("Mariah", "mariah@carrey.com", "1234")
+
+        self.assertEqual(company.can_manage_company(nonValidUser), False)
 
 
 class BookingTestCase(TestCase):
@@ -118,17 +132,17 @@ class MessageTestCase(TestCase):
             str(message), "'This is a message sent to someone' sent by Viktor"
         )
 
-    def test_order(self):
-        Message.objects.create(
-            booking=self.booking,
-            name="Jonathan",
-            body="Hallå hur är det läget?",
-        )
-        Message.objects.create(
-            booking=self.booking,
-            name="En grabb",
-            body="Inte så bra tack som frågar.",
-        )
+    # def test_order(self):
+    #     Message.objects.create(
+    #         booking=self.booking,
+    #         name="Jonathan",
+    #         body="Hallå hur är det läget?",
+    #     )
+    #     Message.objects.create(
+    #         booking=self.booking,
+    #         name="En grabb",
+    #         body="Inte så bra tack som frågar.",
+    #     )
 
-        booking = Booking.objects.get(location="Testville")
-        self.assertEqual(booking, "hej")
+    #     booking = Booking.objects.get(location="Testville")
+    #     self.assertEqual(booking, "hej")
