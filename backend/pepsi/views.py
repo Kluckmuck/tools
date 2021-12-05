@@ -41,9 +41,9 @@ class CompanyView(viewsets.ModelViewSet):
         queryset = Company.objects.all()
         company = get_object_or_404(queryset, pk=pk)
         if company.can_manage_company(request.user):
-            serializer = SlimCompanySerializer(company)
-        else:
             serializer = CompanySerializer(company)
+        else:
+            serializer = SlimCompanySerializer(company)
         return Response(serializer.data)
 
     @action(detail=True, methods=["get"])

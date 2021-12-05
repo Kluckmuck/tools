@@ -2,13 +2,19 @@ from django.test import TestCase
 
 from pepsi.models import Booking, Company, Message
 from django.contrib.auth.models import User
+
+import datetime
 from datetime import date
+from django.utils import timezone
+
 
 # Create your tests here.
 
 
 class CompanyTestCase(TestCase):
     def setUp(self):
+        datetime.datetime.now(tz=timezone.utc)  # you can use this value
+
         self.user = User.objects.create_user(
             "Jim Carrey", "jim@carrey.com", "jimspassword"
         )
@@ -60,6 +66,8 @@ class CompanyTestCase(TestCase):
 
 class BookingTestCase(TestCase):
     def setUp(self):
+        datetime.datetime.now(tz=timezone.utc)  # you can use this value
+
         self.user = User.objects.create_user(
             "Jim Carrey", "jim@carrey.com", "jimspassword"
         )
@@ -74,7 +82,7 @@ class BookingTestCase(TestCase):
         Booking.objects.create(
             comments="A test booking",
             location="Testville",
-            date=date.fromisoformat("2022-01-22"),
+            date=timezone.now(),
             operator=self.company,
             owner=self.user,
         )
@@ -96,6 +104,8 @@ class BookingTestCase(TestCase):
 
 class MessageTestCase(TestCase):
     def setUp(self):
+        datetime.datetime.now(tz=timezone.utc)  # you can use this value
+
         self.user = User.objects.create_user(
             "Jim Carrey", "jim@carrey.com", "jimspassword"
         )
@@ -110,7 +120,7 @@ class MessageTestCase(TestCase):
         self.booking = Booking.objects.create(
             comments="A test booking",
             location="Testville",
-            date=date.fromisoformat("2022-01-22"),
+            date=timezone.now(),
             operator=self.company,
             owner=self.user,
         )
