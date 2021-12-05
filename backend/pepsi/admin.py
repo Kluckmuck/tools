@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Company, Message
+from .models import Booking, Company, Message
 
 # Register your models here.
 
@@ -9,6 +9,26 @@ class PepsiAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Company, PepsiAdmin)
+# admin.site.register(Booking, PepsiAdmin)
+
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = (
+        "comments",
+        "status",
+        "location",
+        "createdDate",
+        "date",
+        "operator",
+        "owner",
+    )
+    list_filter = ("status", "createdDate", "operator")
+    search_fields = ("comments", "location")
+    actions = ["approve_bookings"]
+
+    def approve_bookings(self, request, queryset):
+        queryset.update(active=True)
 
 
 @admin.register(Message)
