@@ -24,7 +24,34 @@ export class BookingDetailsComponent implements OnInit {
     this.bookingsService
       .getBooking(parseInt(this.route.snapshot.paramMap.get("id")))
       .subscribe((booking) => {
+        console.log(booking);
         this.booking = booking;
+      });
+  }
+
+  acceptBooking() {
+    this.bookingsService
+      .acceptBooking(
+        parseInt(this.route.snapshot.paramMap.get("id")),
+        this.booking
+      )
+      .subscribe((booking) => {
+        console.log(booking);
+        this.booking = booking;
+        console.log(this.booking);
+      });
+  }
+
+  denyBooking() {
+    this.bookingsService
+      .denyBooking(
+        parseInt(this.route.snapshot.paramMap.get("id")),
+        this.booking
+      )
+      .subscribe((booking) => {
+        console.log(booking);
+        this.booking = booking;
+        console.log(this.booking);
       });
   }
 }

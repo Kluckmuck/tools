@@ -1,3 +1,4 @@
+import { BookingStatus } from "./BookingStatus";
 import { Message } from "./Message";
 
 export class Booking {
@@ -11,6 +12,6 @@ export class Booking {
   location: string;
   comments: string;
   operator: number;
-  status: string;
+  status: BookingStatus;
   messages: Message[];
 }

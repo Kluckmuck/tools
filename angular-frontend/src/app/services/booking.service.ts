@@ -4,6 +4,7 @@ import { pipe } from "@angular/core/src/render3";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Booking } from "../models/Booking";
+import { BookingStatus } from "../models/BookingStatus";
 
 @Injectable({
   providedIn: "root",
@@ -26,6 +27,16 @@ export class BookingService {
   getBooking(id: Number): Observable<Booking> {
     const url = `${this.URL}${id}/`;
     return this.http.get<Booking>(url);
+  }
+
+  acceptBooking(id: Number, booking: Booking): Observable<Booking> {
+    const url = `${this.URL}${id}/accept/`;
+    return this.http.put<Booking>(url, booking);
+  }
+
+  denyBooking(id: Number, booking: Booking): Observable<Booking> {
+    const url = `${this.URL}${id}/deny/`;
+    return this.http.put<Booking>(url, booking);
   }
 
   private mergeDateAndTime(date: Date, time: Date): Date {

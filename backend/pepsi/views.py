@@ -83,14 +83,16 @@ class BookingView(viewsets.ModelViewSet):
     @action(detail=True, methods=["put", "patch"])
     def accept(self, request, pk=None):
         booking = self.get_object()
-        booking.accept_booking()
-        return Response({"status": booking.status})
+        booking.accept_booking(self.request.user)
+        data = BookingSerializer(booking)
+        return Response(data.data)
 
     @action(detail=True, methods=["put", "patch"])
     def deny(self, request, pk=None):
         booking = self.get_object()
-        booking.deny_booking()
-        return Response({"status": booking.status})
+        booking.deny_booking(self.request.user)
+        data = BookingSerializer(booking)
+        return Response(data.data)
 
 
 class MessageView(viewsets.ModelViewSet):

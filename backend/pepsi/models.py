@@ -55,13 +55,22 @@ class Booking(models.Model):
     def __str__(self):
         return self.comments
 
-    def accept_booking(self):
+    def accept_booking(self, user):
         self.status = self.ACCEPTED
+        self.addMessage(user)
         self.save()
 
-    def deny_booking(self):
+    def deny_booking(self, user):
         self.status = self.DENIED
+        self.addMessage(user)
         self.save()
+
+    def addMessage(self, user):
+        Message.objects.create(
+            booking=self,
+            name=user,
+            body="Booking has been {}".format(self.get_status_display()),
+        )
 
 
 class Message(models.Model):
