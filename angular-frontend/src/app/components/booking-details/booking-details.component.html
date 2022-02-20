@@ -4,16 +4,30 @@
     <p>Created: {{ booking.createdDate | date: "short" }}</p>
     <p>Location: {{ booking.location }}</p>
     <p>Comments: {{ booking.comments }}</p>
-    <p>Status: {{ booking.status }}</p>
-    <p>Owner: {{ booking.owner }}</p>
+    <p>Status: {{ statusLabel }}</p>
+    <p>Booking Creator: {{ booking.owner }}</p>
   </div>
 
   <div style="padding-left: 1rem">
-    <button mat-button (click)="acceptBooking()">Accept</button>
-    <button mat-button (click)="denyBooking()">Deny</button>
+    <div>
+      <button
+        mat-button
+        [disabled]="booking.status === 'AC'"
+        (click)="acceptBooking()"
+      >
+        Accept
+      </button>
+      <button
+        mat-button
+        [disabled]="booking.status === 'DN'"
+        (click)="denyBooking()"
+      >
+        Deny
+      </button>
+    </div>
+    <app-message-container [booking]="booking"></app-message-container>
   </div>
-  <app-message-container [booking]="booking"></app-message-container>
-</div>
-<div *ngIf="!booking">
-  <p>Could not fetch booking information.</p>
+  <div *ngIf="!booking">
+    <p>Could not fetch booking information.</p>
+  </div>
 </div>

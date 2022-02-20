@@ -14,4 +14,8 @@ export class Booking {
   operator: number;
   status: BookingStatus;
   messages: Message[];
+
+  getStatusLabel(): string {
+    return this.status + "test";
+  }
 }

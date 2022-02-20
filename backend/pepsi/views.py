@@ -83,16 +83,25 @@ class BookingView(viewsets.ModelViewSet):
     @action(detail=True, methods=["put", "patch"])
     def accept(self, request, pk=None):
         booking = self.get_object()
-        booking.accept_booking(self.request.user)
-        data = BookingSerializer(booking)
-        return Response(data.data)
+
+        if booking.operator.owner == self.request.user:
+            booking.accept_booking(self.request.user)
+            data = BookingSerializer(booking)
+            return Response(data.data)
+        else:
+            print("unauthorized to accept booking!")
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     @action(detail=True, methods=["put", "patch"])
     def deny(self, request, pk=None):
         booking = self.get_object()
-        booking.deny_booking(self.request.user)
-        data = BookingSerializer(booking)
-        return Response(data.data)
+
+        if booking.operator.owner == self.request.user:
+            booking.deny_booking(self.request.user)
+            data = BookingSerializer(booking)
+            return Response(data.data)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 class MessageView(viewsets.ModelViewSet):

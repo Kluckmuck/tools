@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Booking } from "../../models/Booking";
 import { BookingService } from "src/app/services/booking.service";
-import { Observable } from "rxjs";
+import { toStatusLabel } from "../messages/util/toStatusLabel";
 
 @Component({
   selector: "app-booking-details",
@@ -11,6 +11,7 @@ import { Observable } from "rxjs";
 })
 export class BookingDetailsComponent implements OnInit {
   @Input() booking: Booking;
+  statusLabel: string;
   constructor(
     private route: ActivatedRoute,
     private bookingsService: BookingService
@@ -24,8 +25,8 @@ export class BookingDetailsComponent implements OnInit {
     this.bookingsService
       .getBooking(parseInt(this.route.snapshot.paramMap.get("id")))
       .subscribe((booking) => {
-        console.log(booking);
         this.booking = booking;
+        this.statusLabel = toStatusLabel(booking.status);
       });
   }
 
@@ -36,9 +37,8 @@ export class BookingDetailsComponent implements OnInit {
         this.booking
       )
       .subscribe((booking) => {
-        console.log(booking);
         this.booking = booking;
-        console.log(this.booking);
+        this.statusLabel = toStatusLabel(booking.status);
       });
   }
 
@@ -49,9 +49,8 @@ export class BookingDetailsComponent implements OnInit {
         this.booking
       )
       .subscribe((booking) => {
-        console.log(booking);
         this.booking = booking;
-        console.log(this.booking);
+        this.statusLabel = toStatusLabel(booking.status);
       });
   }
 }
